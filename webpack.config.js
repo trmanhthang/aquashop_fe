@@ -1,10 +1,10 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.vue'],
         alias: {
-            '~': path.resolve(__dirname, '../../../utils/MyUtilFn'),
+            '~': path.resolve(__dirname, 'src'),
         },
     },
 };
