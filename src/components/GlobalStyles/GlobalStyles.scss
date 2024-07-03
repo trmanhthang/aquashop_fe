@@ -5,7 +5,13 @@
 };
 
 :root {
-
+  --primary-color: #0A74DA;
+  --secondary-color: #F5DEB3;
+  --accent-color: #FF9800;
+  --white-color: #FFFFFF;
+  --background-color:#F2F2F2;
+  --black-color: #000000;
+  --text-color: #333333;
 }
 
 * {
@@ -34,4 +40,9 @@ input,
 
 a[href] {
   text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
