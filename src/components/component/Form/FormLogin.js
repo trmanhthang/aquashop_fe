@@ -5,10 +5,14 @@ import InputField from "~/components/component/Field/InputField/InputField";
 import Button from "~/components/component/Button/Button";
 import {login} from "~/services/auth";
 import {LoaderCircle} from "lucide-react";
+import {useNavigate} from "react-router-dom";
+import {getPathHistory} from "~/services/path";
 
 const cx = classNames.bind(style);
 
 function FormLogin() {
+    const navigate = useNavigate();
+
     const initialValues = {
         username: "",
         password: ""
@@ -17,12 +21,14 @@ function FormLogin() {
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={values => login(values)}
+            onSubmit={ values => {
+                console.log('submit')
+                login(values, navigate);
+            }}
         >
             {formikProps => {
                 const {values, errors, touched, isSubmitting} = formikProps;
-                console.log(isSubmitting);
-
+                console.log(formikProps);
                 return (
                     <Form>
                         <FastField
@@ -41,8 +47,13 @@ function FormLogin() {
                             iconShowPassword={true}
                         />
                         <div className={cx('container_btn')}>
-                            <Button primary large type={'submit'}>
-                                { isSubmitting ? <LoaderCircle size={18} color="#ffffff" /> : "Login"}
+                            <Button
+                                primary
+                                large
+                                type={'submit'}
+                                disabled={isSubmitting}
+                            >
+                                { isSubmitting ? <LoaderCircle className={'loading'} size={18} color="#ffffff" /> : "Login"}
                             </Button>
                         </div>
                     </Form>
