@@ -1,33 +1,28 @@
 import classNames from "classnames/bind";
 import style from "./Form.module.scss";
-import { FastField, Form, Formik } from "formik";
-import InputField from "~/components/component/Field/InputField/InputField";
+import {FastField, Form, Formik} from "formik";
 import Button from "~/components/component/Button/Button";
-import {login} from "~/services/auth";
-import {LoaderCircle} from "lucide-react";
+import InputField from "~/components/component/Field/InputField/InputField";
 
 const cx = classNames.bind(style);
 
-function FormLogin() {
+function FormSignup() {
     const initialValues = {
-        username: "",
-        password: ""
-    }
 
-    return (
+    }
+    return(
         <Formik
             initialValues={initialValues}
-            onSubmit={values => login(values)}
         >
             {formikProps => {
-                const {values, errors, touched, isSubmitting} = formikProps;
-                console.log(isSubmitting);
+                const { values, errors, touched, isSubmitting } = formikProps;
+                console.log({ values, errors, touched, isSubmitting})
 
                 return (
                     <Form>
                         <FastField
                             name={'username'}
-                            component={InputField}
+                            component={ InputField }
 
                             placeholder={'Username'}
                         />
@@ -40,9 +35,19 @@ function FormLogin() {
                             placeholder={'Password'}
                             iconShowPassword={true}
                         />
+
+                        <FastField
+                            name={'confirm_password'}
+                            component={ InputField }
+
+                            type={'password'}
+                            placeholder={'Confirm Password'}
+                            iconShowPassword={true}
+                        />
+
                         <div className={cx('container_btn')}>
                             <Button primary large type={'submit'}>
-                                { isSubmitting ? <LoaderCircle size={18} color="#ffffff" /> : "Login"}
+                                Signup
                             </Button>
                         </div>
                     </Form>
@@ -52,4 +57,4 @@ function FormLogin() {
     )
 }
 
-export default FormLogin;
+export default FormSignup;

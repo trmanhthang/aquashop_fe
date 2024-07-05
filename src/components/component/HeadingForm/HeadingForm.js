@@ -9,9 +9,10 @@ function HeadingForm(props) {
     return(
         <div className={cx('heading')}>
             <Logo/>
+
             <div className={cx('content')}>
-                <h1 className={cx('header')}>{props.title}</h1>
-                <p className={cx('')}>{props.description}</p>
+                <h1>{props.title}</h1>
+                <p>{props.description}</p>
             </div>
         </div>
     )

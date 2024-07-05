@@ -1,4 +1,4 @@
 import FormLogin from "./FormLogin";
-import FormRegister from "./FormRegister";
+import FormSignup from "./FormSignup";
 
-export {FormLogin, FormRegister};
+export {FormLogin, FormSignup};

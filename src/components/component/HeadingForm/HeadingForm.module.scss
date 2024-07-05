@@ -1,0 +1,22 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+
+  h1 {
+    text-transform: capitalize;
+    font-size: 4.4rem;
+    font-weight: 700;
+    color: var(--black-color);
+  }
+
+  p {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    font-weight: 500;
+  }
+}

@@ -1,24 +1,25 @@
 import classNames from "classnames/bind";
-import style from "./Login.module.scss";
+import style from "./Signup.module.scss";
 
 import LayoutForm from "~/components/Layout/LayoutForm";
 import HeadingForm from "~/components/component/HeadingForm/HeadingForm";
-import {FormLogin} from "~/components/component/Form";
+import { FormSignup } from "~/components/component/Form";
 import {Link} from "react-router-dom";
 
 const cx = classNames.bind(style);
 
-function Login() {
-    return(
+function Signup() {
+    return (
         <LayoutForm>
-            <HeadingForm title={'welcome back'} description={'Please login to your account'}/>
+            <HeadingForm title={'Signup'} description={'Create an account'}/>
 
-            <FormLogin />
+            <FormSignup />
+
             <div className={cx('navigation')}>
-                Don't have an account? <Link to={'/signup'}>Signup</Link>
+                Already have an account? <Link to={'/login'}>Login</Link>
             </div>
         </LayoutForm>
     )
 }
 
-export default Login;
+export default Signup;

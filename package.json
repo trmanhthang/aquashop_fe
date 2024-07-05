@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@reduxjs/toolkit": "^2.2.5",
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.17.0",
@@ -12,6 +11,8 @@
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "formik": "^2.4.6",
+    "js-cookie": "^3.0.5",
+    "lucide-react": "^0.400.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.8.1",
     "query-string": "^9.0.0",

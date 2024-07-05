@@ -12,6 +12,8 @@
   --background-color:#F2F2F2;
   --black-color: #000000;
   --text-color: #333333;
+  --hue-primary: #084BAA;
+  --hue-accent: #FB8C00;
 }
 
 * {
@@ -31,11 +33,37 @@ body {
   text-rendering: optimizeSpeed;
 }
 
+form {
+  width: 100%;
+}
+
+.body {
+  background-color: var(--background-color);
+}
+
 button,
 input,
 [tabindex] {
   outline: none;
   border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  background-color: var(--background-color);
+  height: 50px;
+  border-radius: 6px;
+  padding: 0 16px;
+  width: 100%;
+  font-size: 1.4rem;
+  color: var(--text-color);
+}
+
+label {
+  display: block;
 }
 
 a[href] {
@@ -45,4 +73,5 @@ a[href] {
 img {
   width: 100%;
   height: auto;
+  object-fit: cover;
 }
