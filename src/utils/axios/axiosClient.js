@@ -1,7 +1,6 @@
 // api/axiosClient.js
 import axios from 'axios';
 import queryString from 'query-string';
-import {getAccessToken} from "~/services/token";
 // Set up default config for http requests here
 
 // Please have a look at here `https://github.com/axios/axios#request-
@@ -20,12 +19,6 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(async (config) => {
 // Handle token here ...
-    const act = getAccessToken();
-
-    if (act) {
-        config.headers.Authorization = `Bearer ${act}`
-    }
-
     return config;
 })
 

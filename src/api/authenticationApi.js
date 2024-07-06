@@ -1,10 +1,21 @@
 import axiosClient from "~/utils/axios/axiosClient";
 
 const authenticationApi = {
-  login: (params) => {
-      const url = "/api/auth/login";
-      return axiosClient.post(url, params )
-  }
+    login: (body) => {
+        const url = "/api/auth/login";
+        return axiosClient.post(url, body)
+    },
+
+    signup: (body) => {
+        const url = '/api/auth/register';
+        return axiosClient.post(url, body)
+    },
+
+    refresh: (body) => {
+      const url = "/api/auth/refresh_token";
+      return axiosClient.post(url, body)
+    }
+
 }
 
 export default authenticationApi;

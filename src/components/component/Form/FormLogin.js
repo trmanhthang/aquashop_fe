@@ -6,7 +6,7 @@ import Button from "~/components/component/Button/Button";
 import {login} from "~/services/auth";
 import {LoaderCircle} from "lucide-react";
 import {useNavigate} from "react-router-dom";
-import {getPathHistory} from "~/services/path";
+import * as Yup from "yup";
 
 const cx = classNames.bind(style);
 
@@ -18,17 +18,22 @@ function FormLogin() {
         password: ""
     }
 
+    const validationSchema = Yup.object().shape({
+        username: Yup.string().required("Vui lòng nhập trường này!"),
+        password: Yup.string().required("Vui lòng nhập trường này!")
+    })
+
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={ values => {
-                console.log('submit')
-                login(values, navigate);
+            validationSchema={validationSchema}
+            onSubmit={ (values, actions) => {
+                login(values, navigate).then(value => actions.setSubmitting(value));
             }}
         >
             {formikProps => {
                 const {values, errors, touched, isSubmitting} = formikProps;
-                console.log(formikProps);
+
                 return (
                     <Form>
                         <FastField

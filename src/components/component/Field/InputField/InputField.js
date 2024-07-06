@@ -3,7 +3,7 @@ import style from "../Field.module.scss";
 import {FormFeedback, FormGroup, Input, Label} from "reactstrap";
 import PropTypes from "prop-types";
 import { Eye, EyeOff } from "lucide-react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ErrorMessage} from "formik";
 
 const cx = classNames.bind(style);
@@ -33,6 +33,15 @@ function InputField(props) {
     const { errors, touched } = form;
     const showError = errors[name] && touched[name];
     const [typeField, setTypeField] = useState(type);
+    const [autoComplete, setAutoComplete] = useState(undefined);
+
+    useEffect(() => {
+        if(typeField === 'password') {
+            setAutoComplete('new-password');
+        } else if (field.name === 'username') {
+            setAutoComplete(field.name);
+        }
+    }, [autoComplete]);
 
     const changeTypeField = () => {
         if (typeField === 'text') {
@@ -54,17 +63,17 @@ function InputField(props) {
                         type={ typeField === "text" || typeField === "password" || typeField === "email" ? typeField : "text" }
                         disabled={ disabled }
                         placeholder={ placeholder }
-
+                        autoComplete={ autoComplete }
                         invalid={showError}
                     />
-                    { iconShowPassword &&
+                    { iconShowPassword && !showError &&
                         <button type={'button'}  onClick={changeTypeField}>
                             { typeField === 'text' && <Eye size={18} color={"#8d8d8d"}/> }
                             { typeField === 'password' && <EyeOff size={18} color={"#8d8d8d"}/> }
                         </button>
                     }
+                    <ErrorMessage name={name} component={FormFeedback} />
                 </div>
-                <ErrorMessage name={name} component={FormFeedback} />
             </div>
         </FormGroup>
     )

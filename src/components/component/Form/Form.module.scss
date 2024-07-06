@@ -1,8 +1,23 @@
-.container_btn {
-  margin-top: 60px;
+.container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
 
-  span {
-    display: flex;
-    justify-content: center;
-  }
+.wrapper {
+  display: flex;
+  transition: all 0.5s ease-in-out;
+}
+
+.content {
+  min-width: 100%;
+  padding: 4px 10px;
+}
+
+.container_btn {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  gap: 0 20px;
 }

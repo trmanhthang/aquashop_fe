@@ -3,6 +3,7 @@
   font-family: 'Quicksand';
   src: url('../../assets/fonts/Quicksand-Medium.ttf');
 };
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 :root {
   --primary-color: #0A74DA;
@@ -14,6 +15,8 @@
   --text-color: #333333;
   --hue-primary: #084BAA;
   --hue-accent: #FB8C00;
+
+  --height-input: 50px;
 }
 
 * {
@@ -52,14 +55,19 @@ button {
   cursor: pointer;
 }
 
-input {
+.form-control {
   background-color: var(--background-color);
-  height: 50px;
+  height: var(--height-input);
   border-radius: 6px;
   padding: 0 16px;
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: var(--text-color);
+}
+
+input::placeholder {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.6rem;
 }
 
 label {
@@ -67,7 +75,7 @@ label {
 }
 
 a[href] {
-  text-decoration: none;
+
 }
 
 img {
@@ -78,6 +86,10 @@ img {
 
 .loading {
   animation: spin 1s linear infinite;
+}
+
+.invalid-feedback {
+  margin-top: 0;
 }
 
 //Animation
