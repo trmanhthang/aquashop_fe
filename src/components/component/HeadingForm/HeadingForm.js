@@ -8,7 +8,7 @@ function HeadingForm(props) {
 
     return(
         <div className={cx('heading')}>
-            <Logo/>
+            <Logo small/>
 
             <div className={cx('content')}>
                 <h1>{props.title}</h1>

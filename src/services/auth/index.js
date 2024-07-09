@@ -1,9 +1,8 @@
 import Cookies from "js-cookie";
-import authenticationApi from "~/api/authenticationApi";
 import { encodedData } from "~/services/encryption";
-import {useNavigate} from "react-router-dom";
-import {getPathHistory} from "~/services/path";
+import { getPathHistory } from "~/services/path";
 import Alert from "~/components/component/Alert";
+import { authenticationApi } from "~/api";
 
 const login = async (values, navigate) => {
     const response = authenticationApi.login(values);

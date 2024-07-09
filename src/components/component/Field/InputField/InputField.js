@@ -17,6 +17,7 @@ InputField.propTypes = {
     label: PropTypes.string,
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
+    noMargin: PropTypes.bool,
 };
 
 function InputField(props) {
@@ -27,11 +28,23 @@ function InputField(props) {
         label = '',
         placeholder = '',
         disabled = false,
+        noMargin = false,
+        onChange,
+        customHeight,
+        large,
+        small,
+        medium,
+        bsSize,
     } = props;
 
-    const {name, value, onChange,  onBlur} = field;
+    const classes = cx({
+        large,
+        small,
+        medium,
+    });
+
     const { errors, touched } = form;
-    const showError = errors[name] && touched[name];
+    const showError = errors[field.name] && touched[field.name];
     const [typeField, setTypeField] = useState(type);
     const [autoComplete, setAutoComplete] = useState(undefined);
 
@@ -52,19 +65,28 @@ function InputField(props) {
     };
 
     return(
-        <FormGroup>
+        <FormGroup noMargin={noMargin}>
             <div className={cx('wrapper')}>
-                {label && <Label for={ name }>{ label }</Label>}
-                <div className={cx('container_field')}>
+                {label && <Label for={ field.name }>{ label }</Label>}
+                <div className={cx('container_field')} style={{height: customHeight}}>
                     <Input
-                        id={ name }
+                        className={classes}
+                        id={ field.name }
                         {...field}
 
                         type={ typeField === "text" || typeField === "password" || typeField === "email" ? typeField : "text" }
                         disabled={ disabled }
                         placeholder={ placeholder }
                         autoComplete={ autoComplete }
-                        invalid={showError}
+                        invalid={ showError }
+                        onChange={changeEvent => {
+                            form.setFieldValue(field.name, changeEvent.target.value);
+                            if(onChange) {
+                                onChange(changeEvent.target.value);
+                            }
+                        }}
+
+                        bsSize={bsSize}
                     />
                     { iconShowPassword && !showError &&
                         <button type={'button'}  onClick={changeTypeField}>
@@ -72,7 +94,7 @@ function InputField(props) {
                             { typeField === 'password' && <EyeOff size={18} color={"#8d8d8d"}/> }
                         </button>
                     }
-                    <ErrorMessage name={name} component={FormFeedback} />
+                    <ErrorMessage name={field.name} component={FormFeedback} />
                 </div>
             </div>
         </FormGroup>

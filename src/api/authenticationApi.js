@@ -3,7 +3,11 @@ import axiosClient from "~/utils/axios/axiosClient";
 const authenticationApi = {
     login: (body) => {
         const url = "/api/auth/login";
-        return axiosClient.post(url, body)
+        return axiosClient.post(url, body, {
+            headers: {
+                Authorization: ""
+            }
+        })
     },
 
     signup: (body) => {

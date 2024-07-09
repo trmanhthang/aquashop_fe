@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const cx = classNames.bind(style);
 
-function Button({to, href, primary, large, medium, small, children, onClick, lefticon, righticon, ...passProps}) {
+function Button({to, href, primary, large, medium, small, iconOnly, children, onClick, lefticon, righticon, ...passProps}) {
     let Comp = 'button';
 
     const props = {
@@ -16,6 +16,16 @@ function Button({to, href, primary, large, medium, small, children, onClick, lef
         ...passProps,
     }
 
+    const customClasses = {
+        primary,
+        large,
+        medium,
+        small,
+        iconOnly,
+    }
+
+    const classes = cx('wrapper', customClasses);
+
     if (to) {
         props.to = to;
         Comp = Link;
@@ -24,17 +34,14 @@ function Button({to, href, primary, large, medium, small, children, onClick, lef
         Comp = 'a';
     }
 
-    const classes = cx('wrapper', {
-        primary,
-        large,
-        medium,
-        small,
-    });
+    if ( lefticon || righticon && children ) {
+        delete customClasses.iconOnly;
+    }
 
     return (
         <Comp className={classes} {...props}>
             { lefticon && <span className={cx('icon')}>{ lefticon }</span> }
-            <span className={cx('title')}>{children}</span>
+            { children && <span className={cx('title')}>{children}</span> }
             { righticon && <span className={cx('icon')}>{ righticon }</span> }
         </Comp>
     )

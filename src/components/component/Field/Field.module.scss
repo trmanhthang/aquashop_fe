@@ -1,6 +1,5 @@
 .container_field {
   position: relative;
-  height: 66px;
 
   button {
     position: absolute;
@@ -12,4 +11,12 @@
     background-color: transparent;
     padding: 0 12px;
   }
+}
+
+.large {
+  height: var(--height-input);
+}
+
+.reset {
+  margin-bottom: 0 !important;
 }

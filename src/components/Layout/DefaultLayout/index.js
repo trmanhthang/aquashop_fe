@@ -4,9 +4,9 @@ import Sidebar from "~/components/component/Sidebar/Sidebar";
 
 function DefaultLayout({ children}) {
     return(
-        <div>
+        <div className={'body'}>
             <Header/>
-            <div className="container">
+            <div className="wrapper">
                 <Sidebar/>
                 <div className="content">
                     { children }

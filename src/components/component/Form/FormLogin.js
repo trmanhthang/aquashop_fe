@@ -41,6 +41,8 @@ function FormLogin() {
                             component={InputField}
 
                             placeholder={'Username'}
+                            customHeight={"66px"}
+                            large
                         />
 
                         <FastField
@@ -50,6 +52,8 @@ function FormLogin() {
                             type={'password'}
                             placeholder={'Password'}
                             iconShowPassword={true}
+                            customHeight={"66px"}
+                            large
                         />
                         <div className={cx('container_btn')}>
                             <Button

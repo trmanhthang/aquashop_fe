@@ -83,6 +83,8 @@ function FormSignup() {
                                                 component={InputField}
 
                                                 placeholder={'Username'}
+                                                customHeight={"66px"}
+                                                large
                                             />
                                         </div>
 
@@ -94,6 +96,8 @@ function FormSignup() {
                                                 type={'password'}
                                                 placeholder={'Password'}
                                                 iconShowPassword={true}
+                                                customHeight={"66px"}
+                                                large
                                             />
                                         </div>
 
@@ -105,6 +109,8 @@ function FormSignup() {
                                                 type={'password'}
                                                 placeholder={'Confirm Password'}
                                                 iconShowPassword={true}
+                                                large
+                                                customHeight={"66px"}
                                             />
                                         </div>
                                     </div>
@@ -129,6 +135,8 @@ function FormSignup() {
                                                 component={InputField}
 
                                                 placeholder={'Name'}
+                                                large
+                                                customHeight={"66px"}
                                             />
                                         </div>
 
@@ -138,6 +146,8 @@ function FormSignup() {
                                                 component={InputField}
 
                                                 placeholder={'Phone'}
+                                                large
+                                                customHeight={"66px"}
                                             />
                                         </div>
 
@@ -148,6 +158,8 @@ function FormSignup() {
 
                                                 type={'email'}
                                                 placeholder={'Email'}
+                                                large
+                                                customHeight={"66px"}
                                             />
                                         </div>
 
@@ -157,6 +169,8 @@ function FormSignup() {
                                                 component={InputField}
 
                                                 placeholder={'Address'}
+                                                large
+                                                customHeight={"66px"}
                                             />
                                         </div>
                                     </div>

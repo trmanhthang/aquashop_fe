@@ -1,0 +1,13 @@
+.equidistant {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.inline {
+  display: inline-block;
+}
