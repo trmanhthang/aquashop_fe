@@ -1,36 +1,35 @@
-import Cookies from "js-cookie";
-import { encodedData } from "~/services/encryption";
-import { getPathHistory } from "~/services/path";
-import Alert from "~/components/component/Alert";
-import { authenticationApi } from "~/api";
+import {getPathHistory} from "~/services/path";
+import {authenticationApi} from "~/api";
+import TokenService from "~/services/token";
 
-const login = async (values, navigate) => {
-    const response = authenticationApi.login(values);
-    await response.then( data => {
-        const encryption = encodedData(data);
-        Cookies.set("token", encryption, { expires: 7 });
-        navigate(getPathHistory());
-    }).catch( error => {
-        console.log(error);
-    })
-    return false;
+class AuthenticationService {
+    login = async (values, navigate) => {
+        try {
+            const response = await authenticationApi.login(values);
+            console.log(response);
+            navigate(getPathHistory());
+            return false;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    signup = async (values, navigate) => {
+        try {
+            await authenticationApi.signup(values);
+            return false;
+        } catch (error) {
+
+        }
+    };
+
+    refresh = async (navigate) => {
+        const rft = {
+            token: TokenService.getRefreshToken(),
+        };
+        const act = await authenticationApi.refresh(rft);
+        TokenService.setAccessToken(act);
+    };
 }
 
-const signup = async (values, navigate) => {
-    const response = authenticationApi.signup(values);
-    await response.then( data => {
-        console.log(data);
-        Alert.toast("success", 'Đăng ký thành công!', navigate('/login'))
-    }).catch( error => {
-        Alert.toast("error", 'Lỗi đăng ký!')
-        console.log(error);
-    })
-
-    return false;
-}
-
-const refresh = async () => {
-
-};
-
-export { login, signup, refresh };
+export default new AuthenticationService();

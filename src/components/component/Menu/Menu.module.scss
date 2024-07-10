@@ -6,8 +6,16 @@
 .text {
   color: var(--text-color);
   text-decoration: none;
+
+  &:hover {
+    color: var(--hue-accent);
+  }
 }
 
 .inline {
   display: inline-block;
+}
+
+.wrapper {
+  width: 100%;
 }

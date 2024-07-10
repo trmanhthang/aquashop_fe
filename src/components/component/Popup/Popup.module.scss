@@ -1,0 +1,27 @@
+.popup {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
+.wrapper {
+  margin: 20px 8px;
+  box-shadow: 0 0 12px rgb(160 160 160 / 63%);
+}
+
+.item_link {
+  text-decoration: none;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  padding: 10px 6px;
+  gap: 10px;
+
+  &:hover {
+    background-color: rgb(102 102 102 / 6%);;
+  }
+}
+
+.icon {
+  display: inline-flex;
+}

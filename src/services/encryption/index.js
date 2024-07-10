@@ -1,11 +1,13 @@
 import * as CryptoJS from "crypto-js";
 
-const encodedData = (data) => {
-    return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(JSON.stringify(data)));
+class EncryptionService {
+    encodedData = (data) => {
+        return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(JSON.stringify(data)));
+    }
+
+    decodedData = (data) => {
+        return CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
+    }
 }
 
-const decodedData = (token) => {
-    return CryptoJS.enc.Base64.parse(token).toString(CryptoJS.enc.Utf8);
-}
-
-export { encodedData, decodedData };
+export default new EncryptionService();

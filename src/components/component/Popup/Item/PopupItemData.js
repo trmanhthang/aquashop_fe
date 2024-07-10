@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 
 const cx = classNames.bind(style);
 
-function PopupItem({ key, id, image, name }) {
+function PopupItemData({ key, id, image, name }) {
     return (
         <li key={ key } className={cx('popup_item')}>
-            <Link className={cx('link')} to={"/"}>
+            <Link className={cx('link')} to={"/detail? "}>
                 <div className={cx('')}>
                     <div className={cx('image')}>
                         <img src={''} alt={'Ảnh sản phẩm'}/>
@@ -21,4 +21,4 @@ function PopupItem({ key, id, image, name }) {
     )
 }
 
-export default PopupItem;
+export default PopupItemData;

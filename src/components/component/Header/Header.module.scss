@@ -1,3 +1,28 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: var(--white-color);
+  height: var(--height-header);
+  display: flex;
+  align-items: center;
+}
+
+.wrapper_nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0 10px;
+}
+
+.container_element {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.container_icon {
+  position: relative;
 }

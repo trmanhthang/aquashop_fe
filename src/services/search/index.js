@@ -1,4 +1,5 @@
 import {searchApi} from "~/api";
+import AuthenticationService from "~/services/auth";
 
 const searchPublic = async (data, navigate) => {
     let products;
@@ -10,6 +11,12 @@ const searchPublic = async (data, navigate) => {
         switch (error.response.status) {
             case 401:
                 console.log("Error: 401");
+                AuthenticationService.refresh(navigate);
+                navigate("/login");
+                break;
+            case 403:
+                console.log("Error: 401");
+                AuthenticationService.refresh(navigate);
                 navigate("/login");
                 break;
         }

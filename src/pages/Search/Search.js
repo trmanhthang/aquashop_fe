@@ -1,14 +1,14 @@
 import {useEffect} from "react";
 import {savePathHistory} from "~/services/path";
 
-function Home() {
+function Search() {
     useEffect(() => {
         savePathHistory();
     }, [])
 
     return(
-        <h1>Home page</h1>
+        <h1>Search</h1>
     )
 }
 
-export default Home;
+export default Search;

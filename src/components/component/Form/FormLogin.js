@@ -3,10 +3,11 @@ import style from "./Form.module.scss";
 import { FastField, Form, Formik } from "formik";
 import InputField from "~/components/component/Field/InputField/InputField";
 import Button from "~/components/component/Button/Button";
-import {login} from "~/services/auth";
+
 import {LoaderCircle} from "lucide-react";
 import {useNavigate} from "react-router-dom";
 import * as Yup from "yup";
+import AuthenticationService from "~/services/auth";
 
 const cx = classNames.bind(style);
 
@@ -27,8 +28,8 @@ function FormLogin() {
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={ (values, actions) => {
-                login(values, navigate).then(value => actions.setSubmitting(value));
+            onSubmit={ async (values, actions) => {
+                actions.setSubmitting(await AuthenticationService.login(values, navigate));
             }}
         >
             {formikProps => {

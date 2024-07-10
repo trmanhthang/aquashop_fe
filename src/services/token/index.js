@@ -1,22 +1,32 @@
 import Cookies from "js-cookie";
-import {decodedData} from "~/services/encryption";
+import EncryptionService from "~/services/encryption";
 
-const getAccessToken = () => {
-    const data = Cookies.get('token');
-    if(data) {
-        const decrypt = decodedData(data);
-        return JSON.parse(decrypt)?.accessToken;
+class TokenService {
+    getAccessToken = () => {
+        const data = Cookies.get("act");
+        if(data) {
+            return EncryptionService.decodedData(data);
+        }
+        return ''
     }
-    return ''
+
+    getRefreshToken = () => {
+        const data = Cookies.get("rft");
+        if (data) {
+            return EncryptionService.decodedData(data);
+        }
+        return '';
+    }
+
+    setAccessToken = (act) => {
+        const actEncoded = EncryptionService.encodedData(act);
+        Cookies.set("act", actEncoded);
+    }
+
+    setRefreshToken = (rft) => {
+        const rftEncoded = EncryptionService.encodedData(rft);
+        Cookies.set("rft", rftEncoded);
+    }
 }
 
-const getRefreshToken = () => {
-    const data = Cookies.get('token');
-    if (data) {
-        const decrypt = decodedData(data);
-        return JSON.parse(decrypt)?.refreshToken;
-    }
-    return ''
-}
-
-export { getAccessToken, getRefreshToken };
+export default new TokenService();

@@ -4,7 +4,7 @@ import {FastField, Form, Formik} from "formik";
 import Button from "~/components/component/Button/Button";
 import InputField from "~/components/component/Field/InputField/InputField";
 import {LoaderCircle, StepBack, StepForward} from "lucide-react";
-import {signup} from "~/services/auth";
+import AuthenticationService from "~/services/auth"
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import * as Yup from "yup";
@@ -63,9 +63,8 @@ function FormSignup() {
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values, actions) => {
-                signup(values, navigate)
-                    .then(value => actions.setSubmitting(value));
+            onSubmit={ async (values, actions) => {
+                actions.setSubmitting(await AuthenticationService.signup(values, navigate));
             }}
         >
             {formikProps => {
@@ -122,7 +121,7 @@ function FormSignup() {
                                             onClick={nextForm}
                                             righticon={<StepForward size={18} color="#ffffff" />}
                                         >
-                                            Next
+                                            Tiếp theo
                                         </Button>
                                     </div>
                                 </div>
@@ -182,7 +181,7 @@ function FormSignup() {
                                             disabled={isSubmitting}
                                         >
                                             {isSubmitting ?
-                                                <LoaderCircle className={'loading'} size={18} color={"#ffffff"}/> : "Signup"}
+                                                <LoaderCircle className={'loading'} size={18} color={"#ffffff"}/> : "Đăng ký"}
                                         </Button>
 
                                         <Button
@@ -191,7 +190,7 @@ function FormSignup() {
                                             onClick={prevForm}
                                             lefticon={<StepBack size={18} color={"#ffffff"} />}
                                         >
-                                            Back
+                                            Quay lại
                                         </Button>
                                     </div>
                                 </div>
