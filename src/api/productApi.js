@@ -1,7 +1,7 @@
 import axiosClient from "~/utils/axios/axiosClient";
 import TokenService from "~/services/token";
 
-const searchApi = {
+const productApi = {
     searchPublic: ( data ) => {
         const act = TokenService.getAccessToken();
         const url = `/api/product/search/public?key=${data.key}&size=${data.size}`;
@@ -10,7 +10,12 @@ const searchApi = {
                 Authorization: `Bearer ${act}`
             }
         })
+    },
+
+    getAllPublic: () => {
+        const url = '/api/product/public';
+        return axiosClient.get(url)
     }
 }
 
-export default searchApi;
+export default productApi;

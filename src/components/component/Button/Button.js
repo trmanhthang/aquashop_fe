@@ -11,6 +11,7 @@ function Button({
                     large,
                     medium,
                     small,
+                    rounded,
                     iconOnly,
                     no_background,
                     children,
@@ -33,10 +34,10 @@ function Button({
     const customClasses = {
         primary,
         large,
-        medium,
         small,
         iconOnly,
         no_background,
+        rounded,
     }
 
     const classes = cx('wrapper', customClasses);
@@ -49,7 +50,7 @@ function Button({
         Comp = 'a';
     }
 
-    if (lefticon || righticon && children) {
+    if ((lefticon || righticon) && children) {
         delete customClasses.iconOnly;
     }
 

@@ -1,9 +1,9 @@
 import {useEffect} from "react";
-import {savePathHistory} from "~/services/path";
+import PathHistoryService from "~/services/path";
 
 function Search() {
     useEffect(() => {
-        savePathHistory();
+        PathHistoryService.savePathHistory();
     }, [])
 
     return(

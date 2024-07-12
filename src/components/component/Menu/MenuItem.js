@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const cx = classNames.bind(style);
 
-function MenuItem({ route, data, text, inline, fontSize, fontWeight }) {
+function MenuItem({ route, text, inline, fontSize, fontWeight }) {
 
     const classes = cx('menu_item', {
         inline,

@@ -1,35 +1,36 @@
-import {getPathHistory} from "~/services/path";
+import PathHistoryService from "~/services/path";
 import {authenticationApi} from "~/api";
 import TokenService from "~/services/token";
 
-class AuthenticationService {
-    login = async (values, navigate) => {
+const AuthenticationService = {
+    login: async (values, navigate) => {
         try {
             const response = await authenticationApi.login(values);
-            console.log(response);
-            navigate(getPathHistory());
+            TokenService.setAccessToken(response.data.act);
+            TokenService.setRefreshToken(response.data?.rft)
+            navigate(PathHistoryService.getPathHistory());
             return false;
         } catch (error) {
             console.log(error);
         }
-    };
+    },
 
-    signup = async (values, navigate) => {
+    signup: async (values) => {
         try {
             await authenticationApi.signup(values);
             return false;
         } catch (error) {
 
         }
-    };
+    },
 
-    refresh = async (navigate) => {
+    refresh: async () => {
         const rft = {
             token: TokenService.getRefreshToken(),
         };
         const act = await authenticationApi.refresh(rft);
         TokenService.setAccessToken(act);
-    };
+    },
 }
 
-export default new AuthenticationService();
+export default AuthenticationService;

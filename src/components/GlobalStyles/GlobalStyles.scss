@@ -5,6 +5,7 @@
 };
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 :root {
   --primary-color: #0A74DA;
   --secondary-color: #F5DEB3;
@@ -39,10 +40,6 @@ body {
 
 form {
   width: 100%;
-}
-
-.body {
-  background-color: var(--background-color);
 }
 
 button,
@@ -91,6 +88,10 @@ img {
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+.content {
+
 }
 
 .loading {

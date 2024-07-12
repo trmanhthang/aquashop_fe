@@ -54,7 +54,7 @@ function InputField(props) {
         } else if (field.name === 'username') {
             setAutoComplete(field.name);
         }
-    }, [autoComplete]);
+    }, []);
 
     const changeTypeField = () => {
         if (typeField === 'text') {

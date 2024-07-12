@@ -1,10 +1,10 @@
-class PathHistoryService {
-    savePathHistory = () => {
+const PathHistoryService = {
+    savePathHistory: () => {
         let url = window.location.pathname;
         localStorage.setItem('path', url);
-    }
+    },
 
-    getPathHistory = () => {
+    getPathHistory: () => {
         const path = localStorage.getItem('path');
         if (path) {
             return path;
@@ -12,4 +12,4 @@ class PathHistoryService {
     }
 }
 
-export default new PathHistoryService();
+export default PathHistoryService;

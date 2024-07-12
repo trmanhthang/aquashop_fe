@@ -23,6 +23,10 @@
   padding: 12px 18px;
 }
 
+.small {
+  padding: 0 0;
+}
+
 .icon {
   display: flex;
 }
@@ -42,4 +46,19 @@
 
 .title {
   display: flex;
+}
+
+.rounded {
+  min-width: 120px;
+  border: 1.5px solid var(--text-color);
+  border-radius: 30px;
+  text-decoration: none;
+
+  .title {
+    color: var(--text-color);
+  }
+
+  &:hover {
+    background-color: #F2F2F2;
+  }
 }

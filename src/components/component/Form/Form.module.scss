@@ -26,42 +26,21 @@
   position: relative;
   display: flex;
   gap: 0 10px;
+  padding: 6px 6px;
+  background-color: #F2F2F2;
+  border-radius: 10px;
 }
 
 .wrapper_search {
   position: relative;
-
-  input {
-    width: 0;
-    padding: 0;
-    border: none;
-    transition: all 0.5s ease-in-out;
-
-    &:focus {
-      width: 100%;
-      padding: 0 16px;
-    }
-  }
-
-  &:hover .form_search {
-    padding: 6px 6px;
-    background-color: #F2F2F2;
-    border-radius: 10px;
-  }
-
-  &:hover .form_background {
-    display: block;
-  }
-
-  &:hover input {
-    width: 100%;
-    padding: 0 16px;
-  }
 }
 
 .container_input-search {
-  overflow: hidden;
   transition: all 0.5s ease-in-out;
+
+  input {
+    background-color: var(--white-color);
+  }
 }
 
 .form_background {
@@ -73,12 +52,5 @@
   background-color: #F2F2F2;
   z-index: -1;
   transition: all 0.5s ease-in-out;
-  border-radius: 10px;
-  display: none;
-}
-
-.form_search:focus-within {
-  padding: 6px 6px;
-  background-color: #F2F2F2;
   border-radius: 10px;
 }

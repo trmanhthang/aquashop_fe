@@ -15,7 +15,6 @@ const authenticationApi = {
       const url = "/api/auth/refresh_token";
       return axiosClient.post(url, body)
     }
-
 }
 
 export default authenticationApi;

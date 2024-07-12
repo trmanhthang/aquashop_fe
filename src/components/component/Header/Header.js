@@ -7,19 +7,35 @@ import {UserRound, ShoppingCart, LogIn, Upload} from "lucide-react";
 import {FormSearch} from "~/components/component/Form";
 import {Popup} from "~/components/component/Popup";
 import PopupItemText from "~/components/component/Popup/Item/PopupItemText";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const cx = classNames.bind(style);
 
 function Header() {
     const [navUser, setNavUser] = useState(false);
+    const [shadow, setShadow] = useState(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > 0) {
+            setShadow(true);
+        } else {
+            setShadow(false);
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    })
 
     return (
-        <header className={cx('header')}>
+        <header className={cx('header', shadow ? 'shadow' : "")}>
             <div className={'grid wide'}>
                 <div className={cx('wrapper')}>
                     <div className={'row'}>
-                        <div className={'col l-3'}>
+                        <div className={'col l-2'}>
                             <Logo medium/>
                         </div>
 
@@ -35,7 +51,7 @@ function Header() {
                             </div>
                         </div>
 
-                        <div className={'col l-3'}>
+                        <div className={'col l-4'}>
                             <div className={cx('container_element')}>
                                 <div className={cx('wrapper_nav')}>
                                     <div className={cx('container_icon')}>

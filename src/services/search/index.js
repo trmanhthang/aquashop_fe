@@ -1,27 +1,10 @@
-import {searchApi} from "~/api";
-import AuthenticationService from "~/services/auth";
+import {productApi} from "~/api";
 
-const searchPublic = async (data, navigate) => {
-    let products;
-    const response = searchApi.searchPublic(data)
-    await response.then((data) => {
-        console.log(data);
-        products = data;
-    }).catch((error) => {
-        switch (error.response.status) {
-            case 401:
-                console.log("Error: 401");
-                AuthenticationService.refresh(navigate);
-                navigate("/login");
-                break;
-            case 403:
-                console.log("Error: 401");
-                AuthenticationService.refresh(navigate);
-                navigate("/login");
-                break;
-        }
-    })
-    return products;
+const SearchService = {
+    searchPublic: async (data) => {
+        const response = await productApi.searchPublic(data);
+        return response.data;
+    }
 }
 
-export { searchPublic };
+export default SearchService;

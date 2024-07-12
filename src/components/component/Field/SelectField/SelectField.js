@@ -1,7 +1,6 @@
 import {FormGroup, Label} from "reactstrap";
 import Select from "react-select/base";
 import PropTypes from "prop-types";
-import InputField from "~/components/component/Field/InputField/InputField";
 
 SelectField.propTypes = {
     field: PropTypes.object.isRequired,

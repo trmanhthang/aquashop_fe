@@ -33,7 +33,7 @@ function FormLogin() {
             }}
         >
             {formikProps => {
-                const {values, errors, touched, isSubmitting} = formikProps;
+                const { isSubmitting } = formikProps;
 
                 return (
                     <Form>

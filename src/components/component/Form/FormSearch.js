@@ -8,7 +8,7 @@ import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Popup, PopupItemData} from "~/components/component/Popup";
 import {useDebounce} from "~/hooks";
-import {searchPublic} from "~/services/search";
+import SearchService from "~/services/search";
 
 const cx = classNames.bind(style);
 
@@ -16,8 +16,6 @@ function FormSearch() {
     const navigate = useNavigate();
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(false);
-    const [loading, setLoading] = useState(false);
     const inputRef = useRef();
     const debouncedValue = useDebounce(searchValue, 500);
     const initialValues = {
@@ -31,28 +29,22 @@ function FormSearch() {
         }
 
         const request = async () => {
-            setLoading(true);
             const data = {
                 key: debouncedValue,
                 size: 6,
             }
-            const result = await searchPublic(data, navigate);
+            const result = await SearchService.searchPublic(data);
 
             setSearchResult(result?.content);
-            setLoading(false);
         };
 
-        request();
-    }, [debouncedValue]);
+        request().then();
+    }, [debouncedValue, navigate]);
 
     const handleClear = () => {
         setSearchValue('');
         setSearchResult([]);
-        inputRef.current.focus();
-    };
-
-    const handleHideResult = () => {
-        setShowResult(false);
+        inputRef.current?.focus();
     };
 
     const handleChange = (value) => {
@@ -70,7 +62,7 @@ function FormSearch() {
         >
             {formikProps => {
 
-                const {values, errors, touched, isSubmitting} = formikProps;
+                const { isSubmitting } = formikProps;
 
                 return (
                     <div className={cx('wrapper_search')}>
@@ -84,17 +76,17 @@ function FormSearch() {
                                     noMargin={true}
                                 />
                             </div>
-                            <Button iconOnly no_background type={'submit'} righticon={ !loading ? <Search size={20} color={'#333333'}/> : ""}>
-                                { loading && <LoaderCircle className={'loading'} size={20} color={"#888888"}/>}
+                            <Button iconOnly no_background type={'submit'} righticon={ !isSubmitting ? <Search size={20} color={'#333333'}/> : "" }>
+                                { isSubmitting && <LoaderCircle className={'loading'} size={20} color={"#888888"}/>}
                             </Button>
                         </Form>
-                        { searchResult.length > 0 &&
-                            <Popup>
+                        {searchResult?.length > 0 &&
+                            <Popup width={"140%"} topPosition={"32px"} rightPosition={"-10px"}>
                                 { searchResult.map((item, index) => {
                                     return(
-                                        <PopupItemData key={ index } name={''} image={''}/>
+                                        <PopupItemData key={index} data={ item }/>
                                     )
-                                }) }
+                                })}
                             </Popup>
                         }
                     </div>
