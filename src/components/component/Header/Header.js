@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from "./Header.module.scss";
 import Logo from "~/components/component/Logo/Logo";
 import {Menu, MenuItem} from "~/components/component/Menu";
-import Button from "~/components/component/Button/Button";
+import Index from "~/components/component/Button";
 import {UserRound, ShoppingCart, LogIn, Upload} from "lucide-react";
 import {FormSearch} from "~/components/component/Form";
 import {Popup} from "~/components/component/Popup";
@@ -60,9 +60,9 @@ function Header() {
 
                                     <div className={cx('container_icon')}>
                                         <div className={cx('icon')}>
-                                            <Button iconOnly no_background type={'button'}
-                                                    righticon={<UserRound size={20} color={'#333333'}/>}
-                                                    onClick={() => setNavUser(!navUser)}
+                                            <Index iconOnly no_background type={'button'}
+                                                   righticon={<UserRound size={20} color={'#333333'}/>}
+                                                   onClick={() => setNavUser(!navUser)}
                                             />
                                         </div>
 
@@ -79,8 +79,8 @@ function Header() {
 
                                     <div className={cx('container_icon')}>
                                         <div className={cx('icon')}>
-                                            <Button iconOnly no_background type={'button'}
-                                                    righticon={<ShoppingCart size={20} color={'#333333'}/>}/>
+                                            <Index iconOnly no_background type={'button'}
+                                                   righticon={<ShoppingCart size={20} color={'#333333'}/>}/>
                                         </div>
                                     </div>
                                 </div>

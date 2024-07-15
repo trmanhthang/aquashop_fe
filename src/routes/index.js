@@ -1,18 +1,20 @@
 import Index from "~/pages/Home";
-import Login from "~/pages/Login/Login";
-import Signup from "~/pages/Signup/Signup";
+import Login from "~/pages/Login";
+import Signup from "~/pages/Signup";
 import LayoutNoSidebar from "~/components/Layout/LayoutNoSidebar";
-import Search from "~/pages/Search/Search";
+import Search from "~/pages/Search";
 import DefaultLayout from "~/components/Layout/DefaultLayout";
-import ErrorServer from "~/pages/500";
+import Test from "~/pages/Test";
+import ErrorServer from "~/pages/ErrorServer";
 
 
 const publicRoutes = [
-    { path: '/', component: Index, layout: LayoutNoSidebar},
+    { path: '/', component: Index, layout: LayoutNoSidebar },
     { path: '/login', component: Login, layout: null },
     { path: '/signup', component: Signup, layout: null },
     { path: '/search', component: Search, layout: DefaultLayout },
-    { path: '/500', component: ErrorServer, layout: null },
+    { path: '/error', component: ErrorServer, layout: null },
+    { path: '/test', component: Test, layout: null }
 ]
 
 const privateRoutes = [

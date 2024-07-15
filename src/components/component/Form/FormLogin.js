@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from "./Form.module.scss";
 import { FastField, Form, Formik } from "formik";
 import InputField from "~/components/component/Field/InputField/InputField";
-import Button from "~/components/component/Button/Button";
+import Index from "~/components/component/Button";
 
 import {LoaderCircle} from "lucide-react";
 import {useNavigate} from "react-router-dom";
@@ -57,14 +57,14 @@ function FormLogin() {
                             large
                         />
                         <div className={cx('container_btn')}>
-                            <Button
+                            <Index
                                 primary
                                 large
                                 type={'submit'}
                                 disabled={isSubmitting}
                             >
                                 { isSubmitting ? <LoaderCircle className={'loading'} size={18} color="#ffffff" /> : "Login"}
-                            </Button>
+                            </Index>
                         </div>
                     </Form>
                 )

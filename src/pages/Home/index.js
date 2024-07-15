@@ -5,7 +5,7 @@ import PathHistoryService from "~/services/path";
 import {Card} from "~/components/component/Card";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules";
-import Button from "~/components/component/Button/Button";
+import Button from "~/components/component/Button";
 import {useDispatch, useSelector} from "react-redux";
 import ProductService from "~/services/product";
 import {switchProducts} from "~/slices/productSlice";
@@ -77,7 +77,7 @@ function Index() {
                     </div>
                     <div className={cx("wrapper_products")}>
                         <div className={"row"}>
-                            { products.map((product, index) => {
+                            { products.slice(0, 4).map((product, index) => {
                                 return(
                                     <div key={ index } className={"col l-4"}>
                                         <Card data={ product }/>
@@ -87,6 +87,33 @@ function Index() {
                         </div>
                     </div>
                 </div>
+            </section>
+            <section className={cx("slider_team")}>
+                 <div className={cx('wrapper_team')}>
+                     <h1>Team</h1>
+                     <Swiper
+                         modules={[Pagination, Autoplay]}
+                         slidesPerView={1}
+                         pagination={{ clickable: true, type: "bullets" }}
+                         speed={1000}
+                         loop={true}
+                         autoplay={{
+                             delay: 4000,
+                             disableOnInteraction: false
+                         }}
+                     >
+                         <SwiperSlide>
+                             <div className={cx('container_items')}>
+                                 <div className={cx('slide_avatar')}>
+                                     <img src={""} alt={""}/>
+                                 </div>
+                                 <p className={cx('description')}>
+
+                                 </p>
+                             </div>
+                         </SwiperSlide>
+                     </Swiper>
+                 </div>
             </section>
         </>
 

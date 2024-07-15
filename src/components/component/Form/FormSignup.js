@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import style from "./Form.module.scss";
 import {FastField, Form, Formik} from "formik";
-import Button from "~/components/component/Button/Button";
+import Index from "~/components/component/Button";
 import InputField from "~/components/component/Field/InputField/InputField";
 import {LoaderCircle, StepBack, StepForward} from "lucide-react";
 import AuthenticationService from "~/services/auth"
@@ -115,14 +115,14 @@ function FormSignup() {
                                     </div>
 
                                     <div className={cx('container_btn')}>
-                                        <Button
+                                        <Index
                                             primary
                                             type={'button'}
                                             onClick={nextForm}
                                             righticon={<StepForward size={18} color="#ffffff" />}
                                         >
                                             Tiếp theo
-                                        </Button>
+                                        </Index>
                                     </div>
                                 </div>
 
@@ -175,23 +175,23 @@ function FormSignup() {
                                     </div>
 
                                     <div className={cx('container_btn')}>
-                                        <Button
+                                        <Index
                                             primary
                                             type={'submit'}
                                             disabled={isSubmitting}
                                         >
                                             {isSubmitting ?
                                                 <LoaderCircle className={'loading'} size={18} color={"#ffffff"}/> : "Đăng ký"}
-                                        </Button>
+                                        </Index>
 
-                                        <Button
+                                        <Index
                                             primary
                                             type={'button'}
                                             onClick={prevForm}
                                             lefticon={<StepBack size={18} color={"#ffffff"} />}
                                         >
                                             Quay lại
-                                        </Button>
+                                        </Index>
                                     </div>
                                 </div>
                             </div>

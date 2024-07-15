@@ -3,7 +3,6 @@ import axios from 'axios';
 import queryString from 'query-string';
 import TokenService from "~/services/token";
 import {authenticationApi} from "~/api";
-import {useRoutes} from "react-router-dom";
 // Set up default config for http requests here
 
 // Please have a look at here `https://github.com/axios/axios#request-
@@ -49,9 +48,9 @@ const onResponseError = async (err) => {
         }
     }
 
-    if (err.message === "Network Error") {
-       window.location.href = '/500';
-    }
+    // if (err.message === "Network Error") {
+    //    window.location.href = '/ErrorServer';
+    // }
 
     return Promise.reject(err);
 };

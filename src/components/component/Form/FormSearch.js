@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from "./Form.module.scss";
 import {FastField, Form, Formik} from "formik";
 import {LoaderCircle, Search} from "lucide-react";
-import Button from "~/components/component/Button/Button";
+import Index from "~/components/component/Button";
 import InputField from "~/components/component/Field/InputField/InputField";
 import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
@@ -76,9 +76,9 @@ function FormSearch() {
                                     noMargin={true}
                                 />
                             </div>
-                            <Button iconOnly no_background type={'submit'} righticon={ !isSubmitting ? <Search size={20} color={'#333333'}/> : "" }>
+                            <Index iconOnly no_background type={'submit'} righticon={ !isSubmitting ? <Search size={20} color={'#333333'}/> : "" }>
                                 { isSubmitting && <LoaderCircle className={'loading'} size={20} color={"#888888"}/>}
-                            </Button>
+                            </Index>
                         </Form>
                         {searchResult?.length > 0 &&
                             <Popup width={"140%"} topPosition={"32px"} rightPosition={"-10px"}>
