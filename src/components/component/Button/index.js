@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const cx = classNames.bind(style);
 
-function Index({
+function Button({
                     to,
                     href,
                     primary,
@@ -63,4 +63,4 @@ function Index({
     )
 }
 
-export default Index;
+export default Button;

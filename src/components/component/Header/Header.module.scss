@@ -7,6 +7,7 @@
   height: var(--height-header);
   display: flex;
   align-items: center;
+  border-bottom: 0.5px solid #e7e7e752;
   z-index: 2;
 }
 
@@ -30,4 +31,29 @@
 
 .container_icon {
   position: relative;
+}
+
+.notification_active {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+}
+
+.notification_quantity {
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--white-color);
 }

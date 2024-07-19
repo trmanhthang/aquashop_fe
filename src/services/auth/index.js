@@ -25,11 +25,15 @@ const AuthenticationService = {
     },
 
     refresh: async () => {
-        const rft = {
-            token: TokenService.getRefreshToken(),
-        };
-        const act = await authenticationApi.refresh(rft);
-        TokenService.setAccessToken(act);
+        try {
+            const rft = {
+                token: TokenService.getRefreshToken(),
+            };
+            const act = await authenticationApi.refresh(rft);
+            TokenService.setAccessToken(act);
+        } catch (e) {
+            console.log(e.message);
+        }
     },
 }
 

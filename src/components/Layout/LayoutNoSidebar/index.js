@@ -1,5 +1,5 @@
 import Header from "~/components/component/Header/Header";
-import Footer from "~/components/component/Footer/Footer";
+import Footer from "~/components/component/Footer";
 import classNames from "classnames/bind";
 import style from "./LayoutNoSideBar.module.scss";
 

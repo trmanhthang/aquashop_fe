@@ -2,18 +2,20 @@ import classNames from "classnames/bind";
 import style from "./Header.module.scss";
 import Logo from "~/components/component/Logo/Logo";
 import {Menu, MenuItem} from "~/components/component/Menu";
-import Index from "~/components/component/Button";
-import {UserRound, ShoppingCart, LogIn, Upload} from "lucide-react";
+import {UserRound, ShoppingCart, LogIn, Upload, Bell} from "lucide-react";
 import {FormSearch} from "~/components/component/Form";
 import {Popup} from "~/components/component/Popup";
 import PopupItemText from "~/components/component/Popup/Item/PopupItemText";
 import {useEffect, useState} from "react";
+import Button from "~/components/component/Button";
+import WebsocketService from "~/utils/websocket";
 
 const cx = classNames.bind(style);
 
 function Header() {
     const [navUser, setNavUser] = useState(false);
     const [shadow, setShadow] = useState(false);
+    const [notification, setNotification] = useState({})
 
     const handleScroll = () => {
         if (window.scrollY > 0) {
@@ -60,7 +62,7 @@ function Header() {
 
                                     <div className={cx('container_icon')}>
                                         <div className={cx('icon')}>
-                                            <Index iconOnly no_background type={'button'}
+                                            <Button iconOnly no_background type={'button'}
                                                    righticon={<UserRound size={20} color={'#333333'}/>}
                                                    onClick={() => setNavUser(!navUser)}
                                             />
@@ -79,9 +81,20 @@ function Header() {
 
                                     <div className={cx('container_icon')}>
                                         <div className={cx('icon')}>
-                                            <Index iconOnly no_background type={'button'}
+                                            <Button iconOnly no_background type={'button'}
                                                    righticon={<ShoppingCart size={20} color={'#333333'}/>}/>
                                         </div>
+
+                                        <span className={cx('notification_quantity')}>1</span>
+                                    </div>
+
+                                    <div className={cx('container_icon')}>
+                                        <div className={cx('icon')}>
+                                            <Button iconOnly no_background type={'button'}
+                                                   righticon={<Bell size={20} color={'#333333'}/>}/>
+                                        </div>
+
+                                        <div className={cx('notification_active')}></div>
                                     </div>
                                 </div>
                             </div>

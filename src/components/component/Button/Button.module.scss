@@ -50,15 +50,20 @@
 
 .rounded {
   min-width: 120px;
-  border: 1.5px solid var(--text-color);
+  border: 1.5px solid #e7e7e7;
   border-radius: 30px;
   text-decoration: none;
+  transition: all 0.5s ease-in-out;
 
   .title {
     color: var(--text-color);
   }
 
   &:hover {
-    background-color: #F2F2F2;
+    background-color: var(--text-color);
+
+    .title {
+      color: var(--white-color);
+    }
   }
 }

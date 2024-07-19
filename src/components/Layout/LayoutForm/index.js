@@ -11,7 +11,7 @@ function LayoutForm({children}) {
                 <section className={cx('form')}>
                     <div className={cx('form_items')}>
                         <section className={cx('container_image')}>
-                            <img src={images.form} alt={'image'}/>
+                            <img src={images.form} alt={'Ảnh minh hoạ'}/>
                         </section>
                     </div>
 

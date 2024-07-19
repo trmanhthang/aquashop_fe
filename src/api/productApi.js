@@ -9,13 +9,18 @@ const productApi = {
             headers: {
                 Authorization: `Bearer ${act}`
             }
-        })
+        });
     },
 
     getAllPublic: () => {
         const url = '/api/product/public';
-        return axiosClient.get(url)
-    }
+        return axiosClient.get(url);
+    },
+
+    findById: ( id ) => {
+        const url = `/api/product/detail?id=${id}`;
+        return axiosClient.get(url);
+    },
 }
 
 export default productApi;

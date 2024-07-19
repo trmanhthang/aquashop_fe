@@ -40,7 +40,7 @@ function Index() {
                 <Swiper
                     modules={[Pagination, Autoplay]}
                     slidesPerView={1}
-                    pagination={{ clickable: true, type: "bullets" }}
+                    pagination={{clickable: true, type: "bullets"}}
                     speed={1000}
                     loop={true}
                     autoplay={{
@@ -50,19 +50,25 @@ function Index() {
                 >
                     <SwiperSlide>
                         <div className={cx("wrapper_item")}>
-                            <img src={"https://wpbingosite.com/wordpress/darion/wp-content/uploads/2024/03/slider-1-1.jpg"} alt={""}/>
+                            <img
+                                src={"https://wpbingosite.com/wordpress/darion/wp-content/uploads/2024/03/slider-1-1.jpg"}
+                                alt={""}/>
                         </div>
                     </SwiperSlide>
 
                     <SwiperSlide>
                         <div className={cx("wrapper_item")}>
-                            <img src={"https://wpbingosite.com/wordpress/darion/wp-content/uploads/2024/03/slider-1-1.jpg"} alt={""}/>
+                            <img
+                                src={"https://wpbingosite.com/wordpress/darion/wp-content/uploads/2024/03/slider-1-1.jpg"}
+                                alt={""}/>
                         </div>
                     </SwiperSlide>
 
                     <SwiperSlide>
                         <div className={cx("wrapper_item")}>
-                            <img src={"https://wpbingosite.com/wordpress/darion/wp-content/uploads/2024/03/slider-1-1.jpg"} alt={""}/>
+                            <img
+                                src={"https://wpbingosite.com/wordpress/darion/wp-content/uploads/2024/03/slider-1-1.jpg"}
+                                alt={""}/>
                         </div>
                     </SwiperSlide>
 
@@ -77,10 +83,10 @@ function Index() {
                     </div>
                     <div className={cx("wrapper_products")}>
                         <div className={"row"}>
-                            { products.slice(0, 4).map((product, index) => {
-                                return(
-                                    <div key={ index } className={"col l-4"}>
-                                        <Card data={ product }/>
+                            {products.slice(0, 4).map((product, index) => {
+                                return (
+                                    <div key={index} className={"col l-4"}>
+                                        <Card data={product}/>
                                     </div>
                                 )
                             })}
@@ -89,31 +95,55 @@ function Index() {
                 </div>
             </section>
             <section className={cx("slider_team")}>
-                 <div className={cx('wrapper_team')}>
-                     <h1>Team</h1>
-                     <Swiper
-                         modules={[Pagination, Autoplay]}
-                         slidesPerView={1}
-                         pagination={{ clickable: true, type: "bullets" }}
-                         speed={1000}
-                         loop={true}
-                         autoplay={{
-                             delay: 4000,
-                             disableOnInteraction: false
-                         }}
-                     >
-                         <SwiperSlide>
-                             <div className={cx('container_items')}>
-                                 <div className={cx('slide_avatar')}>
-                                     <img src={""} alt={""}/>
-                                 </div>
-                                 <p className={cx('description')}>
+                <div className={cx('wrapper_team')}>
+                    <h1>Team</h1>
+                    <Swiper
+                        modules={[Autoplay]}
+                        slidesPerView={1}
+                        speed={1000}
+                        loop={true}
+                        autoplay={{
+                            delay: 6000,
+                            disableOnInteraction: false
+                        }}
+                    >
+                        <SwiperSlide>
+                            <div className={cx('container_items')}>
+                                <div className={cx('slide_avatar')}>
+                                    <img src={"https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"} alt={""}/>
+                                </div>
+                                <p className={cx('description')}>
+                                    Đây là một đoạn flexing về thành viên team shop, hãy flex mô tả gì đó về thành viên
+                                    này (kĩ năng, trình độ, sở thích).
+                                </p>
+                            </div>
+                        </SwiperSlide>
 
-                                 </p>
-                             </div>
-                         </SwiperSlide>
-                     </Swiper>
-                 </div>
+                        <SwiperSlide>
+                            <div className={cx('container_items')}>
+                                <div className={cx('slide_avatar')}>
+                                    <img src={"https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"} alt={""}/>
+                                </div>
+                                <p className={cx('description')}>
+                                    Đây là một đoạn flexing về thành viên team shop, hãy flex mô tả gì đó về thành viên
+                                    này (kĩ năng, trình độ, sở thích).
+                                </p>
+                            </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                            <div className={cx('container_items')}>
+                                <div className={cx('slide_avatar')}>
+                                    <img src={"https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"} alt={""}/>
+                                </div>
+                                <p className={cx('description')}>
+                                    Đây là một đoạn flexing về thành viên team shop, hãy flex mô tả gì đó về thành viên
+                                    này (kĩ năng, trình độ, sở thích).
+                                </p>
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
             </section>
         </>
 
