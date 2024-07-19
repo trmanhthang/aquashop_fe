@@ -50,16 +50,6 @@ function Detail() {
             .catch(error => {
                 console.log(error)
             })
-
-        // WebSocketService.connect(() => {
-        //     WebSocketService.subscribe('/topic/messages', message => {
-        //         setMessages(prevMessages => [...prevMessages, message]);
-        //     });
-        // });
-        //
-        // return () => {
-        //     WebSocketService.disconnect();
-        // };
     }, [param.id]);
 
     return (

@@ -34,7 +34,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 6px 1px #e7e7e7;
+
+  &:hover {
+    box-shadow: 2px 2px 6px 1px #e7e7e7;
+  }
 }
 
 .container_btn-submit {

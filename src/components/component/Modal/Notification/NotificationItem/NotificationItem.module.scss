@@ -1,0 +1,38 @@
+.container_item {
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e7e7e75e;
+  }
+}
+
+.wrapper {
+  display: flex;
+  gap: 0 12px;
+  align-items: center;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #e7e7e7;
+  border-radius: 50%;
+}
+
+.wrapper_content {
+  h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--text-color);
+  }
+}

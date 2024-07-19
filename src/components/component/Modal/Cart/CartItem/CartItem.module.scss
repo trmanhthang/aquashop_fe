@@ -1,0 +1,49 @@
+.image {
+  width: 100px;
+  height: 125px;
+}
+
+.container_item {
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.4s linear;
+
+  &:hover {
+    background-color: #e7e7e791;
+  }
+}
+
+.wrapper {
+  display: flex;
+  gap: 0 16px;
+}
+
+.wrapper_info {
+
+  h5 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+}
+
+.group_btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e7e7e7;
+  border-radius: 14px;
+  padding: 0 6px;
+  background-color: var(--white-color);
+}
+
+.quantity {
+
+  input {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.btn_remove {
+  margin-top: 20px;
+}

@@ -18,6 +18,7 @@ function Button({
                     onClick,
                     lefticon,
                     righticon,
+                    text_blur,
                     ...passProps
                 }) {
     let Comp = 'button';
@@ -38,6 +39,7 @@ function Button({
         iconOnly,
         no_background,
         rounded,
+        text_blur,
     }
 
     const classes = cx('wrapper', customClasses);
