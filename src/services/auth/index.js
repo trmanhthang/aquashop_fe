@@ -17,10 +17,11 @@ const AuthenticationService = {
 
     signup: async (values) => {
         try {
+            delete values?.confirm_password
             await authenticationApi.signup(values);
             return false;
         } catch (error) {
-
+            console.log(error.message);
         }
     },
 

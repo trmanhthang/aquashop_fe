@@ -10,9 +10,11 @@ import {useEffect, useState} from "react";
 import Button from "~/components/component/Button";
 import {Modal} from "~/components/component/Modal";
 import Cart from "~/components/component/Modal/Cart/Cart";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Notification, NotificationItem} from "~/components/component/Modal/Notification";
 import CartItem from "~/components/component/Modal/Cart/CartItem/CartItem";
+import CartService from "~/services/cart";
+import {createCart} from "~/slices/cartSlice";
 
 const cx = classNames.bind(style);
 
@@ -23,6 +25,8 @@ function Header() {
     const [notification, setNotification] = useState([]);
     const [showCart, setShowCart] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
+
+    const dispatch = useDispatch();
 
     const handleScroll = () => {
         if (window.scrollY > 0) {
@@ -45,7 +49,15 @@ function Header() {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    })
+
+    }, []);
+
+    useEffect(() => {
+            CartService.getAll().then((value) => {
+                const data = value.data;
+                dispatch(createCart(data));
+            })
+    }, [dispatch])
 
     return (
         <>
@@ -106,7 +118,9 @@ function Header() {
                                                                                 onClick={handleModalCart}/>}/>
                                             </div>
 
-                                            <span className={cx('notification_quantity')}>1</span>
+                                            {cart?.length > 0 &&
+                                                <span className={cx('notification_quantity')}>{cart?.length}</span>
+                                            }
                                         </div>
 
                                         <div className={cx('container_icon')}>
@@ -116,7 +130,9 @@ function Header() {
                                                         onClick={handleModalNotification}/>
                                             </div>
 
-                                            <div className={cx('notification_active')}></div>
+                                            {notification?.length > 0 &&
+                                                <span className={cx('notification_active')}></span>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -129,8 +145,8 @@ function Header() {
             {showCart &&
                 <Modal onClick={handleModalCart}>
                     <Cart onClick={handleModalCart}>
-                        { cart.map(item => {
-                            return(<CartItem/>);
+                        {cart?.length > 0 && cart.map(item => {
+                            return (<CartItem/>);
                         })}
                     </Cart>
                 </Modal>
@@ -139,8 +155,8 @@ function Header() {
             {showNotification &&
                 <Modal onClick={handleModalNotification}>
                     <Notification onClick={handleModalNotification}>
-                        { notification.map(item => {
-                            return (<NotificationItem />);
+                        {notification.map(item => {
+                            return (<NotificationItem/>);
                         })}
                     </Notification>
                 </Modal>

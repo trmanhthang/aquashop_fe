@@ -6,7 +6,7 @@ import EmptyCart from "~/components/component/Modal/Cart/EmptyCart";
 
 const cx = classNames.bind(style);
 
-function Cart({ onClick, children }) {
+function Cart({ onClick, children, total = 0 }) {
     return(
         <section className={cx('modal_cart')}>
             <div className={cx('header_modal')}>
@@ -22,6 +22,15 @@ function Cart({ onClick, children }) {
 
             <div className={cx('body_modal')}>
                 { children ? children : <EmptyCart />}
+            </div>
+
+
+            <div className={cx('wrapper_total')}>
+                <span>
+                    Tổng tiền:
+                </span>
+
+                <span>{total}</span>
             </div>
         </section>
     )

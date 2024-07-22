@@ -7,7 +7,7 @@ const cx = classNames.bind(style);
 
 function CartItem({ id, name, price, quantity, image }) {
     return (
-        <div className={cx('container_item')}>
+        <div key={id} className={cx('container_item')}>
             <div className={cx('wrapper')}>
                 <div className={cx('image')}>
                     <img src={'https://wpbingosite.com/wordpress/darion/wp-content/uploads/2018/05/pro-21.jpg'}
