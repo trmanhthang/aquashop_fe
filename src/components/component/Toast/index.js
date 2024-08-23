@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
-const Alert = {
-    toast: (status = 'success' || 'warning' || 'error', message, then) => {
+const Toast = {
+    alert: (status = 'success' || 'warning' || 'error', message, then) => {
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -20,4 +20,4 @@ const Alert = {
     }
 }
 
-export default Alert;
+export default Toast;

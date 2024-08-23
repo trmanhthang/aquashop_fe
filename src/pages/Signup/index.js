@@ -11,7 +11,7 @@ const cx = classNames.bind(style);
 function Signup() {
     return (
         <LayoutForm>
-            <HeadingForm title={'Index'} description={'Create an account'}/>
+            <HeadingForm title={'Đăng ký'} description={'Create an account'}/>
 
             <FormSignup />
 

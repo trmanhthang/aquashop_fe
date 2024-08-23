@@ -1,13 +1,14 @@
 import classNames from "classnames/bind";
 import style from "./Form.module.scss";
 import {FastField, Form, Formik} from "formik";
-import Index from "~/components/component/Button";
+import Button from "~/components/component/Button";
 import InputField from "~/components/component/Field/InputField/InputField";
 import {LoaderCircle, StepBack, StepForward} from "lucide-react";
 import AuthenticationService from "~/services/auth"
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import * as Yup from "yup";
+import Toast from "~/components/component/Toast";
 
 const cx = classNames.bind(style);
 
@@ -63,13 +64,20 @@ function FormSignup() {
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
+            enableReinitialize={false}
             onSubmit={ async (values, actions) => {
-                actions.setSubmitting(await AuthenticationService.signup(values, navigate));
+                try {
+                    await AuthenticationService.signup(values, navigate);
+                    Toast.alert("success", "Đăng ký thành công!")
+                } catch (e) {
+                    Toast.alert("warning", "Đăng ký không thành công!");
+                } finally {
+                    actions.resetForm()
+                }
             }}
         >
             {formikProps => {
                 const { isSubmitting } = formikProps;
-
                 return (
                     <Form>
                         <div className={cx('container')}>
@@ -115,14 +123,14 @@ function FormSignup() {
                                     </div>
 
                                     <div className={cx('container_btn')}>
-                                        <Index
+                                        <Button
                                             primary
                                             type={'button'}
                                             onClick={nextForm}
                                             righticon={<StepForward size={18} color="#ffffff" />}
                                         >
                                             Tiếp theo
-                                        </Index>
+                                        </Button>
                                     </div>
                                 </div>
 
@@ -175,23 +183,23 @@ function FormSignup() {
                                     </div>
 
                                     <div className={cx('container_btn')}>
-                                        <Index
+                                        <Button
                                             primary
                                             type={'submit'}
                                             disabled={isSubmitting}
                                         >
                                             {isSubmitting ?
                                                 <LoaderCircle className={'loading'} size={18} color={"#ffffff"}/> : "Đăng ký"}
-                                        </Index>
+                                        </Button>
 
-                                        <Index
+                                        <Button
                                             primary
                                             type={'button'}
                                             onClick={prevForm}
                                             lefticon={<StepBack size={18} color={"#ffffff"} />}
                                         >
                                             Quay lại
-                                        </Index>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>

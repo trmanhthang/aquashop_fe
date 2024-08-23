@@ -9,11 +9,12 @@ import {authenticationApi} from "~/api";
 // config` for the full list of configs
 
 const axiosClient = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+    baseURL: process.env["REACT_APP_API_URL"],
     headers: {
+        Authorization: '',
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
-        'Accept': 'application/json',
+        Accept: 'application/json',
     },
     withCredentials: true,
     paramsSerializer: params => queryString.stringify(params),
@@ -31,15 +32,18 @@ const onResponseError = async (err) => {
     const originalConfig = err.config;
 
     if (originalConfig.url !== "/api/auth/login" && err.response) {
+
         // Access Token was expired
         if ((err.response.status === 401 || err.response.status === 403) && !originalConfig._retry) {
             originalConfig._retry = true;
 
             try {
-                const response = await authenticationApi.refresh({rft: TokenService.getRefreshToken()});
+                const response = await authenticationApi.refresh({"rft": TokenService.getRefreshToken()});
                 const act = response?.data?.act;
 
                 TokenService.setAccessToken(act);
+
+                originalConfig.headers['Authorization'] = `Bearer ${act}`;
 
                 return axiosClient(originalConfig);
             } catch (_error) {

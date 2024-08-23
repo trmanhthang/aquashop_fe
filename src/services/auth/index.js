@@ -5,9 +5,12 @@ import TokenService from "~/services/token";
 const AuthenticationService = {
     login: async (values, navigate) => {
         try {
-            const response = await authenticationApi.login(values);
-            TokenService.setAccessToken(response.data.act);
-            TokenService.setRefreshToken(response.data?.rft)
+            const res = await authenticationApi.login(values);
+            TokenService.setAccessToken(res.data?.act);
+            TokenService.setRefreshToken(res.data?.rft);
+            localStorage.setItem("id", res.data?.id);
+            localStorage.setItem("info", JSON.stringify(res.data?.userInfo));
+
             navigate(PathHistoryService.getPathHistory());
             return false;
         } catch (error) {
@@ -16,13 +19,8 @@ const AuthenticationService = {
     },
 
     signup: async (values) => {
-        try {
-            delete values?.confirm_password
-            await authenticationApi.signup(values);
-            return false;
-        } catch (error) {
-            console.log(error.message);
-        }
+        delete values?.confirm_password
+        await authenticationApi.signup(values);
     },
 
     refresh: async () => {

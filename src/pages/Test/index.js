@@ -1,32 +1,39 @@
-import {useEffect, useState} from "react";
-import {Button} from "reactstrap";
-import WebsocketService from "~/utils/websocket";
+import {useEffect, useMemo, useState} from "react";
+import Button from "~/components/component/Button";
+import WebSocketClient from "~/utils/websocket";
+import UserService from "~/services/user";
+
 
 function Test() {
-    const [response, setResponse] = useState('');
+    const userId = UserService.getId();
+    const [notifications, setNotifications] = useState([]);
+
+    const ws = useMemo(() => new WebSocketClient(`/notification/${userId}`, (message) => {
+        setNotifications((prevState) => [...prevState, message]);
+    }), []);
 
     useEffect(() => {
-        WebsocketService.connect();
-
-        return () => {
-            WebsocketService.disconnect();
-        }
-    }, [])
-
-    const handleMessage = () => {
-        WebsocketService.sendMessage('/app/user/123', 'abc')
-    }
+        ws.connect();
+    }, [ws]);
 
     return (
-        <>
+        <div>
+            <h2>Notifications</h2>
+            <ul>
+                {notifications.map((notification, index) => (
+                    <li key={index}>{notification}</li>
+                ))}
+            </ul>
+
             <Button
-                onClick={handleMessage}
+                onClick={() => {
+                    ws.send("abc");
+                }}
             >
-                Test
+                test
             </Button>
-            {response}
-        </>
-    )
+        </div>
+    );
 }
 
 export default Test;

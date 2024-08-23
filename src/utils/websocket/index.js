@@ -1,35 +1,54 @@
-import client from "~/utils/websocket/websocket";
+class WebSocketClient {
+    constructor(destination, onMessageCallback) {
+        this.destination = destination;
+        this.onMessageCallback = onMessageCallback;
+        this.socket = null;
+    }
 
-const WebsocketService = {
-    connect: () => {
-        client.onConnect = (frame) => {
-            console.log('Connected: ' + frame);
+    // Kết nối đến WebSocket server
+    connect() {
+        if (this.socket) {
+            console.warn('WebSocket already connected');
+            return;
+        }
 
+        this.socket = new WebSocket(process.env["REACT_APP_SOCKET_URL"] + "/ws" + this.destination);
+
+        this.socket.onopen = () => {
+            console.log('WebSocket connection established');
         };
 
-        client.activate();
-    },
+        this.socket.onmessage = (event) => {
+            if (this.onMessageCallback) {
+                this.onMessageCallback(event.data);
+            }
+        };
 
-    disconnect: () => {
-        if(client) {
-            client.deactivate().then();
+        this.socket.onclose = () => {
+            console.log('WebSocket connection closed');
+            this.socket = null;
+        };
+
+        this.socket.onerror = (error) => {
+            console.error('WebSocket error:', error);
+        };
+    }
+
+    // Gửi tin nhắn đến WebSocket server
+    send(data) {
+        if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+            this.socket.send(JSON.stringify(data));
+        } else {
+            console.error('WebSocket is not open');
         }
-    },
+    }
 
-    sendMessage: (destination, message) => {
-        client.publish({
-            destination: destination,
-            body: JSON.stringify(message),
-        })
-    },
+    // Ngắt kết nối WebSocket
+    disconnect() {
+        if (this.socket) {
+            this.socket.close();
+        }
+    }
+}
 
-    subscribe: (destination, callback) => {
-        return client.subscribe(destination, callback);
-    },
-
-    subscribeToUserQueue: (callback) => {
-        return client.subscribe('/user/queue/notification', callback);
-    },
- }
-
- export default WebsocketService;
+export default WebSocketClient;
