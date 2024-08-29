@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import style from "./Form.module.scss";
+import style from "../Form.module.scss";
 import {FastField, Form, Formik} from "formik";
 import {LoaderCircle, Search} from "lucide-react";
 import Button from "~/components/component/Button";

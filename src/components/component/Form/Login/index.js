@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import style from "./Form.module.scss";
+import style from "../Form.module.scss";
 import { FastField, Form, Formik } from "formik";
 import InputField from "~/components/component/Field/InputField/InputField";
 import Index from "~/components/component/Button";

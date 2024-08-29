@@ -2,11 +2,13 @@ import {productApi} from "~/api";
 
 const ProductService = {
     getAll : async () => {
-        return await productApi.getAllPublic();
+        const res = await productApi.getAllPublic();
+        return res.data;
     },
 
     findById: async (id) => {
-        return await productApi.findById(id);
+        const res = await productApi.findById(id);
+        return res.data;
     }
 }
 

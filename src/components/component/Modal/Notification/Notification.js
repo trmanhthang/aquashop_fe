@@ -20,7 +20,7 @@ function Notification({ onClick, children }) {
             </div>
 
             <div className={cx('body_modal')}>
-                { children }
+                { children ? children : <h2>Chưa có thông báo!</h2>}
             </div>
         </section>
     )

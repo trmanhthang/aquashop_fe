@@ -1,6 +1,6 @@
 import {FastField, Form, Formik} from "formik";
 import classNames from "classnames/bind";
-import style from "./Form.module.scss";
+import style from "../Form.module.scss";
 import Button from "~/components/component/Button";
 import InputField from "~/components/component/Field/InputField/InputField";
 

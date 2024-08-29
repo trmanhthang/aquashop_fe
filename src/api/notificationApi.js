@@ -15,12 +15,21 @@ const notificationApi = {
     },
 
     setStatus: (id) => {
-       const url = `/api/notification?id=${id}`
+       const url = `/api/notification?id=${id}`;
         return axiosClient.put(url, {
             headers: {
                 Authorization: authorization,
             }
         })
+    },
+
+    delete: (id) => {
+        const url = `/api/notification?id=${id}`;
+        return axiosClient.delete(url, {
+            headers: {
+                Authorization: authorization,
+            }
+        });
     }
 };
 

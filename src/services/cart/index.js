@@ -2,7 +2,8 @@ import cartApi from "~/api/cartApi";
 
 const CartService = {
     getAll: async () => {
-        return await cartApi.getAll();
+        const res = await cartApi.getAll();
+        return res.data;
     },
 }
 

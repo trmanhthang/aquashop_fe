@@ -1,0 +1,25 @@
+.header {
+  box-shadow: 0 3px 4px #e7e7e7;
+}
+
+.header_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 0 20px;
+
+  .container_avatar {
+    width: 44px;
+    height: 44px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+}

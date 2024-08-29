@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from "./Header.module.scss";
 import Logo from "~/components/component/Logo/Logo";
 import {Menu, MenuItem} from "~/components/component/Menu";
-import {UserRound, LogIn, Upload, Bell, ShoppingBag} from "lucide-react";
+import {UserRound, LogIn, Upload, Bell, ShoppingBag, Settings, LogOut} from "lucide-react";
 import {FormSearch} from "~/components/component/Form";
 import {Popup} from "~/components/component/Popup";
 import PopupItemText from "~/components/component/Popup/Item/PopupItemText";
@@ -26,8 +26,8 @@ function Header() {
     const dispatch = useDispatch();
 
     const cart = useSelector(state => state.cart);
-    const userId = UserService.getId();
-    const userInfo = UserService.info();
+    let userId = UserService.getId();
+    let userInfo = UserService.info();
 
     const [navUser, setNavUser] = useState(false);
     const [shadow, setShadow] = useState(false);
@@ -37,7 +37,7 @@ function Header() {
 
     const ws = useMemo(() => new WebSocketClient(`/notification/${userId}`, (message) => {
         setNotification((prevState) => [...prevState, JSON.parse(message)]);
-    }), []);
+    }), [userId]);
 
     const handleScroll = () => {
         if (window.scrollY > 0) {
@@ -45,16 +45,25 @@ function Header() {
         } else {
             setShadow(false);
         }
-    }
+    };
 
+    /**
+     * Sự kiện ẩn/hiện modal giỏ hàng
+     * */
     const handleModalCart = () => {
         setShowCart(!showCart);
-    }
+    };
 
+    /**
+     * Sự kiện ẩn/hiện modal thông báo
+     * */
     const handleModalNotification = () => {
         setShowNotification(!showNotification)
-    }
+    };
 
+    /**
+     * Phương thức sửa trạng thái thông báo đã xem
+     * */
     const handleSeenNotification = async (id, status) => {
         if (status === "NEW") {
             const data = await NotificationService.setStatus(id);
@@ -66,11 +75,33 @@ function Header() {
         }
     };
 
-    useEffect(() => {
-        NotificationService.getAll().then((data) => {
-            setNotification(data?.data);
-        });
-    }, [])
+    /**
+     * Phương thức xoá một thông báo
+     * */
+    const handleDeleteNotification = async (id) => {
+        const data = await NotificationService.delete(id);
+        const index = notification.findIndex(item => item?.id === data?.id);
+
+        if (index !== -1) {
+            notification.splice(index, 1);
+        }
+    };
+
+    /**
+     * Phương thức lấy dữ liệu thông báo
+     * */
+    const fetchNotification = async () => {
+        const data = await NotificationService.getAll();
+        setNotification(data);
+    };
+
+    /**
+     * Phương thức lấy dữ liệu giỏ hàng
+     * */
+    const fetchCart = async () => {
+        const data = await CartService.getAll();
+        dispatch(createCart(data));
+    };
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -79,19 +110,26 @@ function Header() {
         };
     }, []);
 
+    /**
+     * Gọi dữ liệu
+     * */
     useEffect(() => {
-        if (Cookies.get("act") && Cookies.get("rft")) {
-            CartService.getAll().then((value) => {
-                const data = value.data;
-                dispatch(createCart(data));
-            })
+        if (Cookies.get("rft")) {
+            fetchCart().then();
+            fetchNotification().then();
         }
     }, [dispatch]);
 
+    /**
+     * Phần lắng nghe socket path: "ws://localhost:8081/ws/notification/{id}"
+     * */
     useEffect(() => {
         ws.connect();
     }, [ws])
 
+    /**
+     * Giao diện
+     * */
     return (
         <>
             <header className={cx('header', shadow ? 'shadow' : "")}>
@@ -126,20 +164,56 @@ function Header() {
                                         </div>
 
                                         <div className={cx('container_icon')}>
-                                            <div className={cx('icon')}>
-                                                <Button iconOnly no_background type={'button'}
-                                                        righticon={<UserRound size={20} color={'#333333'}/>}
-                                                        onClick={() => setNavUser(!navUser)}
-                                                />
-                                            </div>
+                                            {!userInfo ?
+                                                <div className={cx('icon')} onClick={() => setNavUser(!navUser)}>
+                                                    <Button iconOnly no_background type={'button'}
+                                                            righticon={<UserRound size={20} color={'#333333'}/>}
+                                                    />
+                                                </div>
+                                                :
+                                                <div className={cx('user_avatar')} onClick={() => setNavUser(!navUser)}>
+                                                    <img src={userInfo?.avatar} alt={"Ảnh đại diện"}/>
+                                                </div>
+                                            }
 
                                             {navUser &&
-                                                <Popup width={"200px"} backgroundColor={"#fff"} rightPosition={"-100px"}
-                                                       hidden={navUser}>
-                                                    <PopupItemText leftIcon={<LogIn size={16} color={"#333333"}/>}
-                                                                   to={"/login"} title={"Đăng nhập"}/>
-                                                    <PopupItemText leftIcon={<Upload size={16} color={"#333333"}/>}
-                                                                   to={"/signup"} title={"Đăng ký"}/>
+                                                <Popup
+                                                    width={"200px"}
+                                                    backgroundColor={"#fff"}
+                                                    rightPosition={"-100px"}
+                                                    hidden={navUser}
+                                                >
+                                                    {!userInfo &&
+                                                        <PopupItemText
+                                                            leftIcon={<LogIn size={16} color={"#333333"}/>}
+                                                            to={"/login"}
+                                                            title={"Đăng nhập"}
+                                                        />
+                                                    }
+
+                                                    {!userInfo &&
+                                                        <PopupItemText
+                                                            leftIcon={<Upload size={16} color={"#333333"}/>}
+                                                            to={"/signup"}
+                                                            title={"Đăng ký"}
+                                                        />
+                                                    }
+
+                                                    {userInfo &&
+                                                        <PopupItemText
+                                                            leftIcon={<Settings size={16} color={"#333333"}/>}
+                                                            to={"/signup"}
+                                                            title={"Cài đặt"}
+                                                        />
+                                                    }
+
+                                                    {userInfo &&
+                                                        <PopupItemText
+                                                            leftIcon={<LogOut size={16} color={"#333333"}/>}
+                                                            to={"/signup"}
+                                                            title={"Đăng xuất"}
+                                                        />
+                                                    }
                                                 </Popup>
                                             }
                                         </div>
@@ -189,7 +263,14 @@ function Header() {
                 <Modal onClick={handleModalNotification}>
                     <Notification onClick={handleModalNotification}>
                         {notification.map(item => {
-                            return (<NotificationItem key={item?.id} data={item} onMouse={() => handleSeenNotification(item?.id, item?.status)}/>);
+                            return (
+                                <NotificationItem
+                                    key={item?.id}
+                                    data={item}
+                                    onMouse={() => handleSeenNotification(item?.id, item?.status)}
+                                    onClickDelete={() => handleDeleteNotification(item?.id)}
+                                />
+                            );
                         })}
                     </Notification>
                 </Modal>

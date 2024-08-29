@@ -26,13 +26,11 @@ function Detail() {
     const [messages, setMessages] = useState([]);
 
     const increaseQuantity = () => {
-        console.log(quantity)
         setQuantity(quantity + 1);
     }
 
     const reduceQuantity = () => {
         if (quantity !== 1) {
-
             setQuantity(quantity - 1);
         }
     }
@@ -41,15 +39,14 @@ function Detail() {
         setShowModal(!showModal);
     }
 
+    const fetchById = async (id) => {
+        const data = await ProductService.findById(id);
+
+        setProduct(data);
+    }
+
     useEffect(() => {
-        const response = ProductService.findById(param.id);
-        response
-            .then(res => {
-                setProduct(res.data);
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        fetchById(param.id).then();
     }, [param.id]);
 
     return (

@@ -2,11 +2,17 @@ import {notificationApi} from "~/api";
 
 const NotificationService = {
     getAll: async () => {
-        return await notificationApi.getAll();
+        const res = await notificationApi.getAll();
+        return res.data;
     },
 
     setStatus: async (id) => {
         const res = await notificationApi.setStatus(id);
+        return res.data;
+    },
+
+    delete: async (id) => {
+        const res = await notificationApi.delete(id);
         return res.data;
     }
 };

@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import style from "./Signup.module.scss";
 
-import LayoutForm from "~/components/Layout/LayoutForm";
+import FormLayout from "~/components/Layout/FormLayout";
 import HeadingForm from "~/components/component/HeadingForm/HeadingForm";
 import { FormSignup } from "~/components/component/Form";
 import {Link} from "react-router-dom";
@@ -10,7 +10,7 @@ const cx = classNames.bind(style);
 
 function Signup() {
     return (
-        <LayoutForm>
+        <FormLayout>
             <HeadingForm title={'Đăng ký'} description={'Create an account'}/>
 
             <FormSignup />
@@ -18,7 +18,7 @@ function Signup() {
             <div className={cx('navigation')}>
                 Already have an account? <Link to={'/login'}>Login</Link>
             </div>
-        </LayoutForm>
+        </FormLayout>
     )
 }
 

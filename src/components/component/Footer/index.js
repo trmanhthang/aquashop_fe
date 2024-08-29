@@ -3,7 +3,6 @@ import style from "./Footer.module.scss";
 import Logo from "~/components/component/Logo/Logo";
 import Button from "~/components/component/Button";
 import {Facebook, Instagram, MapPin, Phone} from "lucide-react";
-import {Formik} from "formik";
 import {FormContact} from "~/components/component/Form";
 
 const cx = classNames.bind(style);

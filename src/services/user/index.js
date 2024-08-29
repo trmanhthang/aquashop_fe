@@ -12,7 +12,7 @@ const UserService = {
         if (userInfo) {
             return JSON.parse(userInfo);
         } else {
-            return {};
+            return null;
         }
     },
 

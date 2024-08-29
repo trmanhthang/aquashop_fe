@@ -4,7 +4,7 @@ import images from "~/assets/images";
 
 const cx = classNames.bind(style);
 
-function LayoutForm({children}) {
+function FormLayout({children}) {
     return(
         <div className={cx('body')}>
             <div className={cx('container')}>
@@ -26,4 +26,4 @@ function LayoutForm({children}) {
     )
 }
 
-export default LayoutForm;
+export default FormLayout;

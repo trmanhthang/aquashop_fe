@@ -12,26 +12,29 @@ import {switchProducts} from "~/slices/productSlice";
 
 const cx = classNames.bind(style);
 
-function Index() {
+function Home() {
     const products = useSelector(state => state.products?.products);
     const page = useSelector(state => state.products?.page);
     const totalPages = useSelector(state => state.products?.totalPages);
 
     const dispatch = useDispatch();
 
+    const fetchProducts = async () => {
+        const data = await ProductService.getAll();
+
+        const initial = {
+            products: data?.content,
+            totalItem: data?.totalElements,
+            currentPage: data?.pageable?.pageNumber,
+            itemPerPage: data?.size,
+            totalPages: data?.totalPages
+        }
+        dispatch(switchProducts(initial));
+    }
     useEffect(() => {
         PathHistoryService.savePathHistory();
 
-        ProductService.getAll().then(response => {
-            const data = {
-                products: response.data?.content,
-                totalItem: response.data?.totalElements,
-                currentPage: response.data?.pageable?.pageNumber,
-                itemPerPage: response.data?.size,
-                totalPages: response.data?.totalPages
-            }
-            dispatch(switchProducts(data))
-        });
+        fetchProducts().then();
     }, [dispatch]);
 
     return (
@@ -150,4 +153,4 @@ function Index() {
     )
 }
 
-export default Index;
+export default Home;

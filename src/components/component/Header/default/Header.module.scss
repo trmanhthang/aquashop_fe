@@ -57,3 +57,14 @@
   font-size: 14px;
   color: var(--white-color);
 }
+
+.user_avatar {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+
+  img {
+    border-radius: 50%;
+  }
+}
