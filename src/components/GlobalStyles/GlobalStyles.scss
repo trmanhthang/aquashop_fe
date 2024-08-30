@@ -92,6 +92,19 @@ img {
   object-fit: cover;
 }
 
+table {
+  border-collapse: collapse;
+  border-spacing: 10px;
+  width: 100%;
+  border: 2px solid var(--primary-color);
+}
+
+th, td {
+  border: 1px solid #888;
+  padding: 8px;
+  text-align: center;
+}
+
 .content {
 
 }

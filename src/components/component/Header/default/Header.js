@@ -48,7 +48,7 @@ function Header() {
     };
 
     /**
-     * Sự kiện ẩn/hiện modal giỏ hàng
+     * Sự kiện ẩn modal giỏ hàng
      * */
     const handleModalCart = () => {
         setShowCart(!showCart);
@@ -250,8 +250,8 @@ function Header() {
             </header>
 
             {showCart &&
-                <Modal onClick={handleModalCart}>
-                    <Cart onClick={handleModalCart}>
+                <Modal closeModal={handleModalCart}>
+                    <Cart close={handleModalCart}>
                         {Array.isArray(cart) && cart?.length > 0 && cart.map(item => {
                             return (<CartItem/>);
                         })}
@@ -260,7 +260,7 @@ function Header() {
             }
 
             {showNotification &&
-                <Modal onClick={handleModalNotification}>
+                <Modal closeModal={handleModalNotification}>
                     <Notification onClick={handleModalNotification}>
                         {notification.map(item => {
                             return (
